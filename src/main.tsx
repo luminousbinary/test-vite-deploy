@@ -3,8 +3,29 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import  Home  from "./pages/Home.tsx";
+import  Contact  from "./pages/Contact.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/vrr/",
+    element: <App />,
+    children: [
+      {
+        path: "/vrr/",
+        element: <Home />,
+      },
+      {
+        path: "/vrr/contact",
+        element: <Contact />,
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
